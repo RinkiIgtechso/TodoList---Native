@@ -76,9 +76,9 @@ export default function HomeScreen() {
                     onSubmitEditing={handleSubmit}  // <-- Add this line
                     returnKeyType="search"           // (optional) changes keyboard key to "Search"
                   />
-                  <TouchableOpacity style={[styles.addButton, styles.borders]} onPress={handleSubmit}>
+                  <TouchableOpacity style={styles.addButton} onPress={handleSubmit}>
                     {/* <Text style={styles.editButtonText}>Edit</Text> */}
-                    <Ionicons name='add-outline' size={20} color={Colors1.lightGrey} />
+                    <Ionicons name='add-outline' size={20} color={Colors1.white} />
                   </TouchableOpacity>
                   {/* <Button title='Submit' onPress={handleSubmit} /> */}
                 </View>
@@ -90,12 +90,12 @@ export default function HomeScreen() {
                     keyExtractor={(_, index) => `list_item${index}`}
                     renderItem={({item, index}) => {
                       return (
-                        <View key={index} style={styles.list}>
+                        <View key={index} style={[styles.list, { gap: 7 }]}>
                           <View style={[styles.flexItem, { flex: 1 }]}>
                             <Text style={styles.number}>{item.id}</Text>
-                            <Text style={styles.taskHeading}>{item.name}</Text>
+                            <Text style={[styles.taskHeading, {flex: 1}]}>{item.name}</Text>
                           </View>
-                          <View style={[styles.flexItem, { width: 80 }]}>
+                          <View style={[styles.flexItem, { width: 55 }]}>
                             <TouchableOpacity style={[styles.editButton ]} onPress={() => handleEdit(item)}>
                               {/* <Text style={styles.editButtonText}>Edit</Text> */}
                               <Ionicons name="create-outline" size={18}  />
@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection:'row',
     alignItems:'center',
-    gap: 10
+    gap: 10,
+    boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px"
   },
   searchText: {
     fontSize: 14,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     marginHorizontal:15,
     backgroundColor: '#fcf3f7',
     borderRadius: 10,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#cb1d63',
     borderStyle: 'solid',
     maxHeight: 300,
@@ -189,21 +190,20 @@ const styles = StyleSheet.create({
     // gap:10,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBlock: 17,
-    paddingInline: 15,
+    paddingBlock: 10,
+    paddingInline: 12,
     width:'100%' 
   },
   number:{
-    fontSize: 16, 
+    fontSize: 14, 
     color: Colors1.darkGrey,
     backgroundColor: "#fff",
     borderRadius: 50,
-    maxWidth: 30,
-    height: 30, 
-    flex: 1, 
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center', 
+    maxWidth: 25,
+    height: 25, 
+    flex: 1,  
+    textAlign: "center",
+    paddingBlock: 3,
     boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"
   },
   taskHeading: {
@@ -219,7 +219,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   addButton:{
-    borderColor: '#000000'
+    borderColor: '#000000',
+    backgroundColor: "#cb1d63",
+    color: Colors1.white,
+    borderRadius: 5,
+    padding: 4,
+    boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"
   },
   editButton: {
     borderColor: Colors1.tint, 
