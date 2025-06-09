@@ -22,7 +22,11 @@ export default function HomeScreen() {
   }
 
   const handleDelete = (task:{id: number; name: string}) => {
-    setList((prev)=>prev.filter((data)=> data.id !== task.id))
+    let data = list.filter((data)=> data.id !== task.id); 
+    setList(( ) => data.map((item, index)=> ({
+      id: index + 1,
+      name: item.name
+    })))
   }
 
   const handleSubmit = (event: any) => {
