@@ -5,8 +5,9 @@ import { Platform } from 'react-native';
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
+import { Colors, Colors1 } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -28,17 +29,43 @@ export default function TabLayout() {
       }}>
       <Tabs.Screen
         name="index"
-        options={{
+        options={({ navigation, route }) => ({
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="home"
+              size={20}
+              color={focused ? 'black' : Colors1.lightGrey}
+            />
+          ),
+          headerTitleStyle: {
+            color: Colors1.lightGrey  
+          }, 
+          tabBarActiveTintColor: 'black',  
+          tabBarInactiveTintColor: Colors1.lightGrey, 
+        })}
       />
       <Tabs.Screen
         name="explore"
-        options={{
+        // options={{
+        //   title: 'Explore',
+        //   tabBarIcon: ({ }) => <Ionicons name='send' size={20} color={Colors1.lightGrey} />,
+        // }}
+        options={({ navigation, route }) => ({
           title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='send'
+              size={20}
+              color={focused ? 'black' : Colors1.lightGrey}
+            />
+          ),
+          headerTitleStyle: {
+            color: Colors1.lightGrey  
+          }, 
+          tabBarActiveTintColor: 'black',  
+          tabBarInactiveTintColor: Colors1.lightGrey, 
+        })}
       />
     </Tabs>
   );
