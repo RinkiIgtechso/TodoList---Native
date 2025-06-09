@@ -21,6 +21,7 @@ export default function HomeScreen() {
     setEditTask(task); 
   }
 
+
   const handleDelete = (task:{id: number; name: string}) => {
     let data = list.filter((data)=> data.id !== task.id); 
     setList(( ) => data.map((item, index)=> ({
